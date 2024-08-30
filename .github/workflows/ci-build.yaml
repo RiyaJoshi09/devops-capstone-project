@@ -1,4 +1,4 @@
-name: CI build
+name: CI Build
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
 
     services:
       postgres:
-        image: alpine
+        image: postgres:alpine
         ports:
           - 5432:5432
         env:
@@ -26,7 +26,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,6 +40,7 @@ jobs:
         run: |
           flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
+
       - name: Run unit tests with nose
         run: nosetests
         env:
