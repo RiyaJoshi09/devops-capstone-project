@@ -141,7 +141,7 @@ class TestAccount(unittest.TestCase):
         same_account = Account.find_by_name(account.name)[0]
         self.assertEqual(same_account.id, account.id)
         self.assertEqual(same_account.name, account.name)
-
+        
     def test_serialize_an_account(self):
         """It should Serialize an account"""
         account = AccountFactory()
